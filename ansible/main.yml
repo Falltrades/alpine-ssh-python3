@@ -1,0 +1,26 @@
+---
+- name: Example Playbook
+  hosts: localhost
+  tasks:
+    - name: Change ssh port to 2222
+      set_fact:
+        ansible_port: 2222
+
+    - name: GET request to google.com
+      uri:
+        url: https://www.google.com
+        method: GET
+        remote_src: true
+      register: response
+
+    - name: Display response status code
+      debug:
+        var: response.status
+
+    - name: Use curl with verbose output # because uri does not support
+      shell: "curl -vf https://www.google.com"
+      register: curl_output
+
+    - name: Display curl output
+      debug:
+        var: curl_output.stdout_lines

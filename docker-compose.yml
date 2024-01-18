@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  alpine:
+    image: alpine-ssh-python3:latest
+    container_name: alpine-ssh-python3
+    ports:
+      - "2222:22"
